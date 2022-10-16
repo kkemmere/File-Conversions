@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DATtoCSV {
 
@@ -36,15 +37,20 @@ public class DATtoCSV {
 				for (String data1 : data) {
 					
 					String datafinal[]= data1.split("#");
+					String[] fixedArray = Arrays.copyOfRange(datafinal, 1, datafinal.length); // Remove spaces
 					
-					for (String dat1 : datafinal)
+					for (String dat1 : fixedArray)
 					{
 						String[] temp = dat1.split(" ");
 						
+//						for (int i = 0; i <temp.length;i++)
+//						{
+//							System.out.println(temp[i]);
+//						}
+						
 						for (String tempfinal : temp) {
-							
+							tempfinal = tempfinal+COMMA_DELIMITER;
 							fw.append(tempfinal);
-							fw.append(COMMA_DELIMITER);
 						}
 					}
 					fw.append(NEW_LINE_SEPARATOR);
